@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'turtlelinks'
+
+current_path = Dir.pwd
+puts "Current path: #{current_path}"
+
+# Remove turbolinks from app/layouts/application.html.erb
+layout_file = File.join(current_path, 'app/views/layouts/application.html.erb')
+layout_with_turbolinks = File.read(layout_file)
+layout_without_turbolinks = layout_with_turbolinks.gsub(/, 'data-turbolinks-track' => true/, '')
+File.open(layout_file, 'w') { |file| file << layout_without_turbolinks }
+
+# Remove turbolinks from the Gemfile
+gemfile_file = File.join(current_path, 'Gemfile')
+gemfile_with_turbolinks = File.read(gemfile_file)
+
+gemfile_regexes = [
+  '# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks',
+  /gem 'turbolinks'\n/
+]
+
+gemfile_without_turbolinks = gemfile_regexes.inject(gemfile_with_turbolinks) do |content, regex|
+  content.gsub!(regex, '')
+end
+
+File.open(gemfile_file, 'w') { |file| file << gemfile_without_turbolinks }
+
+# Remove from app/assets/javascripts/application.js
+app_js_file = File.join(current_path, 'app/assets/javascripts/application.js')
+app_js_with_turbolinks = File.read(app_js_file)
+app_js_without_turbolinks = app_js_with_turbolinks.gsub(/\/\/= require turbolinks\n/, '')
+File.open(app_js_file, 'w') { |file| file << app_js_without_turbolinks }

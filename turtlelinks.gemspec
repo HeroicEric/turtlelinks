@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Turtlelinks::VERSION
   spec.authors       = ["Eric Kelly"]
   spec.email         = ["heroiceric@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Easily remove turbolinks from your Rails app.}
+  spec.description   = %q{Easily remove turbolinks from your Rails app.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
