@@ -1,3 +1,7 @@
+## You don't need this anymore
+
+**You can now pass `--skip-turbolinks` when generating a new Rails app to skip turbolinks.**
+
 # Turtlelinks
 
 Use this gem in order to easily remove [turbolinks](turbolinks) from your Rails
